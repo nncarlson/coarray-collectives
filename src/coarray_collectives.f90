@@ -65,6 +65,27 @@ contains
   !! [1] Sendgupta, Lefohn, and Owens, "A work-efficient step-efficient
   !!     prefix-sum algorithm," 2006.
   !! [2] https://en.wikipedia.org/wiki/Prefix_sum
+  !!
+  !! Here's a naive implementation of co_sum_scan1:
+  !!
+  !! subroutine co_sum_scan1(x)
+  !!   integer, intent(in) :: x
+  !!   integer, allocatable :: c[:]
+  !!   integer :: i
+  !!   allocate(c[*])
+  !!   c = x
+  !!   sync all
+  !!   if (this_image() == 1) then
+  !!     s = c
+  !!     do i = 2, num_images()
+  !!       s = s + c[i]
+  !!       c[i] = s
+  !!     end do
+  !!   end if
+  !!   sync all
+  !!   x = c
+  !! end subroutine
+  !!
 
   subroutine sum_scan_co(x)
 
