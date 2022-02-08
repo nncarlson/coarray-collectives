@@ -71,7 +71,7 @@ contains
   !! subroutine co_sum_scan1(x)
   !!   integer, intent(in) :: x
   !!   integer, allocatable :: c[:]
-  !!   integer :: i
+  !!   integer :: i, s
   !!   allocate(c[*])
   !!   c = x
   !!   sync all
